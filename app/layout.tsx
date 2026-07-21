@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 import LightRays from "@/components/LightRays"
+import Navbar from "@/components/Navbar";
 
 const schibstedGrotesk = Schibsted_Grotesk({
   variable: "--font-schibsted-grotesk",
@@ -33,6 +34,7 @@ export default function RootLayout({
       className={cn("h-full", "antialiased", schibstedGrotesk.variable, martianMono.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-screen flex flex-col">
+        <Navbar/>
         <div className="absolute inset-0 top-0 z-[-1] min-h-screen">
         <LightRays
           raysOrigin="top-center-offset"
