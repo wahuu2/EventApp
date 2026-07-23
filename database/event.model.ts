@@ -50,13 +50,16 @@ EventSchema.pre<IEvent>("save", async function () {
   }
 
   // Normalize date to ISO format
-  if (this.isModified("date")) {
-    const parsedDate = new Date(this.date);
-    if (isNaN(parsedDate.getTime())) {
-      throw new Error("Invalid date format");
-    }
-    this.date = parsedDate.toISOString().split("T")[0]; // YYYY-MM-DD
+  // Normalize date to YYYY-MM-DD without timezone shifts
+if (this.isModified("date")) {
+  const dateRegex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
+  if (!dateRegex.test(this.date)) {
+    throw new Error("Invalid date format, expected YYYY-MM-DD");
   }
+  // Keep the value as-is since it's already normalized
+  this.date = this.date;
+}
+
 
   // Normalize time to HH:mm
   if (this.isModified("time")) {

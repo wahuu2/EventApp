@@ -50,9 +50,15 @@ export async function connectToDatabase(): Promise<Connection> {
     });
   }
 
+ try {
   // Await the connection and store it
   const mongooseInstance = await cached.promise;
   cached.conn = mongooseInstance.connection;
+} catch (err) {
+  // Reset cached.promise so future calls can retry
+  cached.promise = null;
+  throw err;
+}
 
   return cached.conn;
 }
