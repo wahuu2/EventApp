@@ -49,8 +49,7 @@ EventSchema.pre<IEvent>("save", async function () {
     this.slug = slugify(this.title, { lower: true, strict: true });
   }
 
-  // Normalize date to ISO format
-  // Normalize date to YYYY-MM-DD without timezone shifts
+  // Normalize date to YYYY-MM-DD without timezone issues
 if (this.isModified("date")) {
   const dateRegex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
   if (!dateRegex.test(this.date)) {
