@@ -1,8 +1,16 @@
 import EventCard from "@/components/EventCard";
 import ExploreBtn from "@/components/ExploreBtn";
-import { events } from "@/lib/constants";
+import {IEvent} from "@/database/event.model";
 
-const Home = () => {
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
+// 👇 Make the component async so you can use await
+const Home = async () => {
+  const response = await fetch(`${BASE_URL}/api/events`, {
+    cache: "no-store", // optional: prevents caching
+  });
+  const { events } = await response.json();
+
   return (
     <section className="px-6 py-12">
       {/* Hero Section */}
@@ -22,11 +30,13 @@ const Home = () => {
       <div className="mt-20 space-y-7">
         <h3 className="text-xl font-semibold">Featured Events</h3>
         <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {events.map((event) => (
-            <li key={event.slug}>
-              <EventCard {...event} />
-            </li>
-          ))}
+          {events &&
+            events.length > 0 &&
+            events.map((event: IEvent) => (
+              <li key={event.slug}>
+                <EventCard {...event} />
+              </li>
+            ))}
         </ul>
       </div>
     </section>
@@ -34,3 +44,5 @@ const Home = () => {
 };
 
 export default Home;
+
+
