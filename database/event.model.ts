@@ -35,7 +35,7 @@ const EventSchema = new Schema<IEvent>(
     time: { type: String, required: true },
     mode: { type: String, required: true },
     audience: { type: String, required: true },
-    agenda: { type: [String], required: true },
+    agenda: { type: [String], required: true  },
     organizer: { type: String, required: true },
     tags: { type: [String], required: true },
   },

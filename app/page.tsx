@@ -1,14 +1,15 @@
 import EventCard from "@/components/EventCard";
 import ExploreBtn from "@/components/ExploreBtn";
 import {IEvent} from "@/database/event.model";
+import { cacheLife } from "next/cache";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 // 👇 Make the component async so you can use await
 const Home = async () => {
-  const response = await fetch(`${BASE_URL}/api/events`, {
-    cache: "no-store", // optional: prevents caching
-  });
+  'use cache'
+  cacheLife('hours')
+  const response = await fetch(`${BASE_URL}/api/events`);
   const { events } = await response.json();
 
   return (
@@ -33,7 +34,7 @@ const Home = async () => {
           {events &&
             events.length > 0 &&
             events.map((event: IEvent) => (
-              <li key={event.slug}>
+              <li key={event.slug} className="list-none">
                 <EventCard {...event} />
               </li>
             ))}
