@@ -2,26 +2,25 @@ import EventCard from "@/components/EventCard";
 import ExploreBtn from "@/components/ExploreBtn";
 import { IEvent } from "@/database/event.model";
 import { cacheLife } from "next/cache";
-import { events } from "@/lib/constants";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-// 👇 Make the component async so you can use await
 const Home = async () => {
   "use cache";
   cacheLife("hours");
 
-  /* 
   let events: IEvent[] = [];
   try {
-    const response = await fetch(`${BASE_URL}/api/events`);
+    const response = await fetch(`${BASE_URL}/api/events`, {
+      cache: "no-store", // ✅ ensures fresh data from MongoDB
+    });
     if (response.ok) {
-      ({ events } = await response.json());
+      const data = await response.json();
+      events = data.events; // ✅ use the events returned by your API
     }
   } catch (error) {
     console.error("Failed to load events", error);
   }
-  */
 
   return (
     <section className="px-6 py-12">
@@ -42,13 +41,15 @@ const Home = async () => {
       <div className="mt-20 space-y-7">
         <h3 className="text-xl font-semibold">Featured Events</h3>
         <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {events &&
-            events.length > 0 &&
+          {events && events.length > 0 ? (
             events.map((event: IEvent) => (
               <li key={event.slug} className="list-none">
                 <EventCard {...event} />
               </li>
-            ))}
+            ))
+          ) : (
+            <p className="text-gray-500">No events found.</p>
+          )}
         </ul>
       </div>
     </section>
