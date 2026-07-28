@@ -33,13 +33,13 @@ const EventTags =({tags}:{tags:string[]})=>(
   </div>
 )
 
-const EventDetailsPage = async ({ params }: { params: { slug: string } }) => {
-  const {slug} = await params;
-  const request =await fetch(`${BASE_URL}/api/events/${slug}`)
-  const { event :{description,image,overview,date,time,location,mode,agenda,audience,organizer,tags} }=await request.json();
-
-  if(!description) return notFound();
-
+const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  const {slug} = await params;  
+  const request = await fetch(`${BASE_URL}/api/events/${slug}`, { cache: "no-store" });
+  if (!request.ok) return notFound();
+  const { event } = await request.json();
+  if (!event?.description) return notFound();
+  const { description, image, overview, date, time, location, mode, agenda, audience, organizer, tags } = event;
   const bookings=10;
 
   const similarEvents:IEvent[]=await getSimilarEventsBySlug(slug);
@@ -53,7 +53,7 @@ const EventDetailsPage = async ({ params }: { params: { slug: string } }) => {
       <div className="details">
         {/*Left side-Event Content */}
         <div className="content">
-          <Image src={image} alt="Event Banner" width={800} height={800} className="banner" />
+          <Image src={image} alt="Event Banner" width={800} height={800} loading="eager" className="banner" />
 
           <section className="flex-col-gap-2">
             <h2>Overview</h2>

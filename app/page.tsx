@@ -9,9 +9,15 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const Home = async () => {
   'use cache'
   cacheLife('hours')
-  const response = await fetch(`${BASE_URL}/api/events`);
-  const { events } = await response.json();
-
+  let events: IEvent[] = [];
+  try {
+    const response = await fetch(`${BASE_URL}/api/events`);
+    if (response.ok) {
+      ({ events } = await response.json());
+    }
+  } catch (error) {
+    console.error("Failed to load events", error);
+  }
   return (
     <section className="px-6 py-12">
       {/* Hero Section */}
@@ -45,5 +51,6 @@ const Home = async () => {
 };
 
 export default Home;
+
 
 
