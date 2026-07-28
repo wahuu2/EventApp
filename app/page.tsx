@@ -1,14 +1,17 @@
 import EventCard from "@/components/EventCard";
 import ExploreBtn from "@/components/ExploreBtn";
-import {IEvent} from "@/database/event.model";
+import { IEvent } from "@/database/event.model";
 import { cacheLife } from "next/cache";
+import { events } from "@/lib/constants";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 // 👇 Make the component async so you can use await
 const Home = async () => {
-  'use cache'
-  cacheLife('hours')
+  "use cache";
+  cacheLife("hours");
+
+  /* 
   let events: IEvent[] = [];
   try {
     const response = await fetch(`${BASE_URL}/api/events`);
@@ -18,6 +21,8 @@ const Home = async () => {
   } catch (error) {
     console.error("Failed to load events", error);
   }
+  */
+
   return (
     <section className="px-6 py-12">
       {/* Hero Section */}
@@ -51,6 +56,3 @@ const Home = async () => {
 };
 
 export default Home;
-
-
-

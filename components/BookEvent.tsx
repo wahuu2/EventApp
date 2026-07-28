@@ -4,8 +4,7 @@ import { createBooking } from '@/lib/actions/booking.actions';
 import posthog from 'posthog-js';
 import { useState } from 'react';
 
-const BookEvent = ({eventId, slug }:{eventId:'string', slug:'string'}) => {
-  const [email, setEmail] = useState('');
+const BookEvent = ({ eventId, slug }: { eventId: string; slug: string }) => {  const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false); // ✅ track in-flight state
@@ -17,8 +16,7 @@ const BookEvent = ({eventId, slug }:{eventId:'string', slug:'string'}) => {
 
     if (success){
       setSubmitted(true);
-      posthog.capture('event_booked',{eventId, slug, email })
-    }else{
+      posthog.capture('event_booked', { eventId, slug })    }else{
       console.error('Booking creation failed');
       posthog.captureException('Booking creation failed')
     }

@@ -7,25 +7,21 @@ import { Event } from "@/database/event.model";
  * Fetch a single event by its slug.
  */
 export async function GET(
-  req: NextRequest,
-  context: { params: Promise<{ slug: string }> }
+  _req: NextRequest,
+  { params }: { params: { slug: string } }
 ) {
   try {
-    // ✅ Await params because it's a Promise in App Router
-    const { slug } = await context.params;
+    const { slug } = params; // ✅ no Promise here
 
-    // ✅ Validate slug
-    if (!slug || typeof slug !== "string") {
+    if (!slug) {
       return NextResponse.json(
-        { message: "Invalid or missing slug parameter" },
+        { message: "Missing slug parameter" },
         { status: 400 }
       );
     }
 
-    // ✅ Connect to database
     await connectToDatabase();
 
-    // ✅ Query event by slug
     const event = await Event.findOne({ slug }).exec();
 
     if (!event) {
@@ -35,18 +31,11 @@ export async function GET(
       );
     }
 
-    // ✅ Return event details
-    return NextResponse.json(
-      { message: "Event fetched successfully", event },
-      { status: 200 }
-    );
+    return NextResponse.json({ event }, { status: 200 });
   } catch (error) {
     console.error("Error fetching event by slug:", error);
     return NextResponse.json(
-      {
-        message: "Failed to fetch event",
-        error: error instanceof Error ? error.message : "Unknown error",
-      },
+      { message: "Failed to fetch event" },
       { status: 500 }
     );
   }
