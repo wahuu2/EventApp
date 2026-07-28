@@ -5,6 +5,7 @@ import { Event } from "./event.model";
 export interface IBooking extends Document {
   eventId: mongoose.Types.ObjectId;
   email: string;
+  slug: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -13,6 +14,7 @@ export interface IBooking extends Document {
 const BookingSchema = new Schema<IBooking>(
   {
     eventId: { type: Schema.Types.ObjectId, ref: "Event", required: true },
+    slug: { type: String, required: true }, 
     email: { type: String, required: true, trim: true },
   },
   { timestamps: true }

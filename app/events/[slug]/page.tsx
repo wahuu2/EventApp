@@ -4,6 +4,7 @@ import { IEvent } from "@/database/event.model";
 import { getSimilarEventsBySlug } from "@/lib/actions/event.actions";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { Suspense } from 'react'
 
 const BASE_URL=process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -34,7 +35,9 @@ const EventTags =({tags}:{tags:string[]})=>(
 )
 
 const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  
   const {slug} = await params;  
+
   const request = await fetch(`${BASE_URL}/api/events/${slug}`, { cache: "no-store" });
   if (!request.ok) return notFound();
   const { event } = await request.json();
@@ -94,7 +97,7 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> 
               </p>
             )}
 
-            <BookEvent/>
+            <BookEvent eventId={event._id} slug={event.slug} />
           </div>
         </aside>
       </div>
