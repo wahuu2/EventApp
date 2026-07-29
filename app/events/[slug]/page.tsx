@@ -5,14 +5,13 @@ export default function EventDetailsPage({ params }: { params: Promise<{ slug: s
   return (
     <main>
       <Suspense fallback={<div>Loading...</div>}>
-        {/* ✅ unwrap params inside Suspense */}
         <EventDetailWrapper params={params} />
       </Suspense>
     </main>
   );
 }
 
-// ✅ A small async wrapper component
+// Async wrapper component
 async function EventDetailWrapper({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   return <EventDetail slug={slug} />;

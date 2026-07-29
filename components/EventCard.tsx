@@ -27,7 +27,14 @@ const EventCard = ({ slug, title, image, location, date, time }: Props) => {
     })
   }
 >
-  <Image src={image} alt={title} width={410} height={300} className="poster" />
+  <Image
+  src={image || "/images/default.png"}
+  alt={title}
+  width={410}
+  height={300}
+  className="poster"
+/>
+
 
   <div className="flex flex-row gap-2">
     <Image src="/icons/pin.svg" alt="location" width={14} height={14} />

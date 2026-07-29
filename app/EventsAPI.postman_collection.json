@@ -1,0 +1,61 @@
+{
+  "info": {
+    "name": "Events API",
+    "_postman_id": "12345678-abcd-efgh-ijkl-1234567890ab",
+    "description": "Collection for testing Events API (list, create, fetch by slug)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Events",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/events",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"]
+        }
+      }
+    },
+    {
+      "name": "Create Event",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"The Real Cloud Next 2025\",\n  \"slug\": \"the-real-cloud-next-2025\",\n  \"description\": \"Google Cloud Next conference 2025.\",\n  \"image\": \"/images/cloud-next.png\",\n  \"overview\": \"Deep dive into cloud technologies and AI.\",\n  \"date\": \"2025-09-15\",\n  \"time\": \"09:00 AM\",\n  \"location\": \"San Francisco, CA\",\n  \"mode\": \"Hybrid\",\n  \"agenda\": [\"Keynote\", \"Breakout Sessions\", \"Networking\"],\n  \"audience\": \"Cloud engineers, developers, IT leaders\",\n  \"organizer\": \"Google Cloud\",\n  \"tags\": [\"Cloud\", \"AI\", \"Google\"]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/events",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"]
+        }
+      }
+    },
+    {
+      "name": "Get Event By Slug",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/events/the-real-cloud-next-2025",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "the-real-cloud-next-2025"]
+        }
+      }
+    }
+  ]
+}
