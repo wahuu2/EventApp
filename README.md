@@ -17,7 +17,7 @@ EventApp is a full‑stack Next.js application for managing and showcasing tech 
 ---
 
 ## 🛠️ Tech Stack
-- **Frontend**: Next.js 14, React, Tailwind CSS
+- **Frontend**: Next.js 16, React, Tailwind CSS
 - **Backend**: Next.js API routes
 - **Database**: MongoDB Atlas
 - **Deployment**: Vercel
