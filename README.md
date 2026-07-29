@@ -1,16 +1,18 @@
 # 🎉 EventApp
 
-EventApp is a full‑stack Next.js application for browsing and managing tech events. It integrates with MongoDB for data storage and supports deployment on Vercel.
+EventApp is a full‑stack Next.js application for managing and showcasing tech events. It features dynamic event pages, API routes powered by MongoDB, and a clean UI built with modern React components. The app is deployed on Vercel and connected to MongoDB Atlas for persistent storage.
+
+👉 Live Demo: **[https://eventapp-cyan.vercel.app](https://eventapp-cyan.vercel.app)**
 
 ---
 
 ## 🚀 Features
-- Browse upcoming events with detailed descriptions, agendas, and images.
-- Dynamic event pages (`/events/[slug]`) generated from MongoDB data.
-- API routes (`/api/events`, `/api/events/[slug]`) for fetching event data.
-- Responsive UI built with Next.js and Tailwind CSS.
-- Hybrid rendering (static + dynamic) for performance and fresh data.
-- Analytics tracking with PostHog.
+- Browse upcoming events with detailed descriptions, agendas, and images
+- Dynamic event detail pages (`/events/[slug]`) generated from MongoDB data
+- API routes (`/api/events`, `/api/events/[slug]`) for fetching event data
+- Responsive UI built with Next.js and Tailwind CSS
+- Hybrid rendering (static + dynamic) for performance and fresh data
+- Analytics tracking with PostHog
 
 ---
 
@@ -36,13 +38,24 @@ Install dependencies:
 npm install
 ```
 
+---
+
+## ⚙️ Environment Variables
+
 Create a `.env.local` file in the root directory:
+
 ```env
 MONGODB_URI=your-mongodb-atlas-connection-string
 NEXT_PUBLIC_BASE_URL=http://localhost:3000
 ```
 
-Run the development server:
+> ⚠️ On Vercel, set these variables in **Project → Settings → Environment Variables**.
+
+---
+
+## ▶️ Running Locally
+
+Start the development server:
 ```bash
 npm run dev
 ```
@@ -52,9 +65,6 @@ Open `http://localhost:3000` in your browser.
 ---
 
 ## 🌐 Deployment
-
-The app is live on Vercel:  
-👉 **[https://eventapp-cyan.vercel.app](https://eventapp-cyan.vercel.app)**
 
 To deploy your own version:
 1. Push your code to GitHub.
@@ -87,6 +97,13 @@ Insert sample events into MongoDB Atlas using Compass or the Atlas UI. Example:
   "tags": ["Cloud", "AI", "Google"]
 }
 ```
+
+---
+
+## 📸 Screenshots
+- Homepage with event cards
+- Event detail page with agenda
+- API route JSON response
 
 ---
 
