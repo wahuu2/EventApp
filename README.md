@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎉 EventApp
 
-## Getting Started
+EventApp is a full‑stack Next.js application for managing and showcasing tech events. It features dynamic event pages, API routes powered by MongoDB, and a clean UI built with modern React components.
 
-First, run the development server:
+---
 
+## 🚀 Features
+- Browse upcoming events with images, descriptions, and agendas
+- Dynamic event detail pages (`/events/[slug]`)
+- API routes for fetching events (`/api/events`, `/api/events/[slug]`)
+- MongoDB Atlas integration for persistent storage
+- Deployed seamlessly on Vercel
+
+---
+
+## 🛠️ Tech Stack
+- **Frontend**: Next.js 14, React, TypeScript
+- **Database**: MongoDB Atlas
+- **Deployment**: Vercel
+- **Analytics**: PostHog (event tracking)
+
+---
+
+## 📦 Installation
+
+Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/EventApp.git
+cd EventApp
+
+Install dependencies:
+```bash
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⚙️ Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env.local` file in the root directory and add:
 
-## Learn More
+```env
+MONGODB_URI=your-mongodb-atlas-uri
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+```
 
-To learn more about Next.js, take a look at the following resources:
+> ⚠️ On Vercel, set these variables in **Project → Settings → Environment Variables**.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ▶️ Running Locally
 
-## Deploy on Vercel
+Start the development server:
+```bash
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Visit `http://localhost:3000` [(localhost in Bing)](https://www.bing.com/search?q="http%3A%2F%2Flocalhost%3A3000%2F") to see the app.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🌐 Deployment
+
+1. Push your code to GitHub.
+2. Connect the repo to Vercel.
+3. Add environment variables (`MONGODB_URI`, `NEXT_PUBLIC_BASE_URL`).
+4. Deploy — Vercel will build and host your app automatically.
+
+---
+
+## 🗄️ Seeding Events
+
+Insert sample events into MongoDB Atlas using Compass or the Atlas UI. Example:
+
+```json
+{
+  "title": "The Real Cloud Next 2025",
+  "slug": "the-real-cloud-next-2025",
+  "description": "Google Cloud Next conference 2025.",
+  "image": "/images/event1.png",
+  "overview": "Deep dive into cloud technologies and AI.",
+  "date": "2025-09-15",
+  "time": "09:00 AM",
+  "location": "San Francisco, CA",
+  "mode": "Hybrid",
+  "agenda": ["Keynote", "Breakout Sessions", "Networking"],
+  "audience": "Cloud engineers, developers, IT leaders",
+  "organizer": "Google Cloud",
+  "tags": ["Cloud", "AI", "Google"]
+}
+```
+
+---
+
+## 📸 Screenshots
+- Homepage with event cards
+- Event detail page with agenda
+- API route JSON response
+
+---
+
+## 🤝 Contributing
+Pull requests are welcome! For major changes, please open an issue first to discuss what you’d like to change.
+
+---
+
+## 📜 License
+This project is licensed under the MIT License.
+```
+
+---
